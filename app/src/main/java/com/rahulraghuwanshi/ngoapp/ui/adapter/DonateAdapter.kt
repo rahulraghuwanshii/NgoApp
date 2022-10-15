@@ -2,15 +2,14 @@ package com.rahulraghuwanshi.ngoapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.rahulraghuwanshi.ngoapp.data.donation.Donation
 import com.rahulraghuwanshi.ngoapp.databinding.LayoutDonateBinding
-import com.rahulraghuwanshi.ngoapp.databinding.LayoutPostBinding
 
 
 class DonateAdapter(
     private val donationList: List<Donation>,
+    private val listener: itemClickListener
 ) : RecyclerView.Adapter<DonateAdapter.DonateViewHolder>() {
 
     inner class DonateViewHolder(val binding: LayoutDonateBinding) : RecyclerView.ViewHolder(binding.root)
@@ -26,7 +25,13 @@ class DonateAdapter(
             txtNgoName.text = donation.ngo_name
             txtMoto.text = donation.moto
         }
+        holder.binding.btnDonate.setOnClickListener {
+            listener.onItemClick(donation)
+        }
     }
 
     override fun getItemCount(): Int = donationList.size;
+}
+interface itemClickListener{
+    fun onItemClick(donation: Donation)
 }

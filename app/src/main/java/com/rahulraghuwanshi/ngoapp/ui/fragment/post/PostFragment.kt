@@ -132,6 +132,7 @@ class PostFragment : Fragment() {
                     //here we call as our data is save
                     progress?.dismiss()
                     Toast.makeText(context, "Post Uploaded", Toast.LENGTH_SHORT).show()
+                    getPost()
                 }
 
                 response.exception?.let { exception ->
