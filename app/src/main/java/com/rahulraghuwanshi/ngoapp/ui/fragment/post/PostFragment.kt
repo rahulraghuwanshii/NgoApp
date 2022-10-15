@@ -11,6 +11,7 @@ import com.rahulraghuwanshi.ngoapp.data.post.Post
 import com.rahulraghuwanshi.ngoapp.data.post.PostFirebaseCallback
 import com.rahulraghuwanshi.ngoapp.data.post.PostResponse
 import com.rahulraghuwanshi.ngoapp.databinding.FragmentPostBinding
+import com.rahulraghuwanshi.ngoapp.ui.adapter.PostAdapter
 
 
 class PostFragment : Fragment() {
@@ -43,6 +44,9 @@ class PostFragment : Fragment() {
             override fun onResponse(response: PostResponse) {
                 response.post?.let { post ->
                     //here we set our recyclerview
+                    binding.apply {
+                        rvPost.adapter = PostAdapter(post)
+                    }
                 }
 
                 response.exception?.let { exception ->
