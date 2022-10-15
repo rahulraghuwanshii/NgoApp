@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_goodwill_gallery" />
     <fragment
         android:id="@+id/postFragment"
-        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.PostFragment"
+        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.post.PostFragment"
         android:label="fragment_post"
         tools:layout="@layout/fragment_post" />
     <fragment
