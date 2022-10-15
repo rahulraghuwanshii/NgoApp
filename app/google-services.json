@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "296394118259",
+    "project_id": "ngo-app-dea18",
+    "storage_bucket": "ngo-app-dea18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296394118259:android:461998f767aaadc8a44606",
+        "android_client_info": {
+          "package_name": "com.rahulraghuwanshi.ngoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296394118259-pv44i4hbfmfv9i0mfnao5n32o1vivqra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rahulraghuwanshi.ngoapp",
+            "certificate_hash": "8f6b048bd2ec8b0e19135a9feea5a92c3f8b7f3f"
+          }
+        },
+        {
+          "client_id": "296394118259-5fv4a65euiithui4f452hk4vq69ounmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbqUSLEbSxYQkRyx4Z2X02FemnDbrw0qQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296394118259-5fv4a65euiithui4f452hk4vq69ounmc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
