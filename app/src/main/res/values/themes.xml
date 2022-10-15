@@ -2,15 +2,35 @@
     <!-- Base application theme. -->
     <style name="Theme.NgoApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/secondary</item>
+        <item name="colorPrimaryVariant">@color/secondary</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/primary</item>
         <!-- Customize your theme here. -->
+    </style>
+
+
+    <style name="EditTextBackground" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:padding">12dp</item>
+        <item name="android:background">@drawable/et_grey_bg</item>
+        <item name="android:backgroundTint">#f1f3f4</item>
+        <item name="android:textColorHint">@android:color/darker_gray</item>
+    </style>
+
+
+    <style name="TextBackground" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/et_grey_bg</item>
+        <item name="android:backgroundTint">#f1f3f4</item>
+        <item name="android:textColorHint">@android:color/darker_gray</item>
+    </style>
+
+    <style name="CustomCard" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:background">@drawable/card_bg_light</item>
     </style>
 </resources>

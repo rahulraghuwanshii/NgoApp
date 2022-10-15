@@ -7,27 +7,74 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.LoginFragment"
+        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.auth.login.LoginFragment"
         android:label="fragment_auth"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_loginFragment_to_postFragment"
+            app:destination="@id/postFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/nav_main"
+            app:popUpToInclusive="true"/>
+    </fragment>
     <fragment
         android:id="@+id/donationFragment"
-        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.DonationFragment"
+        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.donation.DonationFragment"
         android:label="fragment_donation"
         tools:layout="@layout/fragment_donation" />
     <fragment
         android:id="@+id/goodwillGalleryFragment"
-        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.GoodwillGalleryFragment"
+        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.gallery.GoodwillGalleryFragment"
         android:label="fragment_goodwill_gallery"
         tools:layout="@layout/fragment_goodwill_gallery" />
     <fragment
         android:id="@+id/postFragment"
-        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.PostFragment"
+        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.post.PostFragment"
         android:label="fragment_post"
-        tools:layout="@layout/fragment_post" />
+        tools:layout="@layout/fragment_post"
+        >
+        <action
+            android:id="@+id/action_postFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/nav_main"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.SignUpFragment"
+        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.auth.signup.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/nav_main"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_signUpFragment_to_postFragment"
+            app:destination="@id/postFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/nav_main"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>
