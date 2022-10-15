@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.LoginFragment"
+        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.auth.login.LoginFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/donationFragment"
-        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.DonationFragment"
+        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.donation.DonationFragment"
         android:label="fragment_donation"
         tools:layout="@layout/fragment_donation" />
     <fragment
         android:id="@+id/goodwillGalleryFragment"
-        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.GoodwillGalleryFragment"
+        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.gallery.GoodwillGalleryFragment"
         android:label="fragment_goodwill_gallery"
         tools:layout="@layout/fragment_goodwill_gallery" />
     <fragment
@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_post" />
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.SignUpFragment"
+        android:name="com.rahulraghuwanshi.ngoapp.ui.fragment.auth.signup.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
 </navigation>

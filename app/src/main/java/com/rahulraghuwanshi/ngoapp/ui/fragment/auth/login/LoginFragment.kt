@@ -1,4 +1,4 @@
-package com.rahulraghuwanshi.ngoapp.ui.fragment
+package com.rahulraghuwanshi.ngoapp.ui.fragment.auth.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,18 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.rahulraghuwanshi.ngoapp.R
 import com.rahulraghuwanshi.ngoapp.databinding.FragmentDonationBinding
-import com.rahulraghuwanshi.ngoapp.databinding.FragmentSignUpBinding
+import com.rahulraghuwanshi.ngoapp.databinding.FragmentLoginBinding
 
-class SignUpFragment : Fragment() {
+class LoginFragment : Fragment() {
 
-    private var _binding: FragmentSignUpBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 

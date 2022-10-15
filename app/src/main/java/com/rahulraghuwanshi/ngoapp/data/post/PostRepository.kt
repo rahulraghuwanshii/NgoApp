@@ -1,19 +1,15 @@
-package com.rahulraghuwanshi.ngoapp.repository
+package com.rahulraghuwanshi.ngoapp.data.post
 
-import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.rahulraghuwanshi.ngoapp.data.FirebaseCallback
-import com.rahulraghuwanshi.ngoapp.data.Post
-import com.rahulraghuwanshi.ngoapp.data.Response
 
 class PostRepository(
     private val rootRef: DatabaseReference = FirebaseDatabase.getInstance().reference,
     private val postRef: DatabaseReference = rootRef.child("Posts")
 ) {
-    fun getResponseFromRealtimeDatabaseUsingCallback(callback: FirebaseCallback) {
+    fun getResponseFromRealtimeDatabaseUsingCallback(callback: PostFirebaseCallback) {
         postRef.get().addOnCompleteListener { task ->
-            val response = Response()
+            val response = PostResponse()
             if (task.isSuccessful) {
                 val result = task.result
                 result?.let {
@@ -28,8 +24,8 @@ class PostRepository(
         }
     }
 
-    fun post(post: Post, callback: FirebaseCallback) {
-        val response = Response()
+    fun post(post: Post, callback: PostFirebaseCallback) {
+        val response = PostResponse()
         postRef.child(post.id.toString()).setValue(post)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

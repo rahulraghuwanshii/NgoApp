@@ -1,4 +1,4 @@
-package com.rahulraghuwanshi.ngoapp.ui.fragment
+package com.rahulraghuwanshi.ngoapp.ui.fragment.auth.signup
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,19 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rahulraghuwanshi.ngoapp.R
-import com.rahulraghuwanshi.ngoapp.databinding.FragmentGoodwillGalleryBinding
+import com.rahulraghuwanshi.ngoapp.databinding.FragmentDonationBinding
 import com.rahulraghuwanshi.ngoapp.databinding.FragmentSignUpBinding
 
-class GoodwillGalleryFragment : Fragment() {
+class SignUpFragment : Fragment() {
 
-    private var _binding: FragmentGoodwillGalleryBinding? = null
+    private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentGoodwillGalleryBinding.inflate(inflater, container, false)
+        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         return binding.root
     }
 

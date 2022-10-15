@@ -1,4 +1,4 @@
-package com.rahulraghuwanshi.ngoapp.data
+package com.rahulraghuwanshi.ngoapp.data.post
 
 data class Post(
     var id : String? = null,
