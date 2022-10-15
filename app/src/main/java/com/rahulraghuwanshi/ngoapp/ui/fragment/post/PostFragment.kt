@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.rahulraghuwanshi.ngoapp.data.post.Post
+import com.rahulraghuwanshi.ngoapp.data.post.PostFirebaseCallback
 import com.rahulraghuwanshi.ngoapp.data.post.PostResponse
 import com.rahulraghuwanshi.ngoapp.databinding.FragmentPostBinding
 
@@ -36,36 +38,37 @@ class PostFragment : Fragment() {
 
     }
 
-    private fun getPost(response: PostResponse) {
-        response.post?.let { post ->
-            post.forEach { item ->
-                item.title?.let {
-                    Toast.makeText(context,"Success!!",Toast.LENGTH_SHORT).show()
+    private fun getPost() {
+        viewModel.getResponseUsingCallback(object : PostFirebaseCallback {
+            override fun onResponse(response: PostResponse) {
+                response.post?.let { post ->
+                    //here we set our recyclerview
+                }
+
+                response.exception?.let { exception ->
+                    exception.message?.let {
+                        Toast.makeText(context, "Something is wrong!!", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
-        }
-
-        response.exception?.let { exception ->
-            exception.message?.let {
-                Toast.makeText(context,"Something is wrong!!",Toast.LENGTH_SHORT).show()
-            }
-        }
+        });
     }
 
-    private fun post(response: PostResponse) {
-        response.post?.let { post ->
-            post.forEach { item ->
-                item.title?.let {
-                    Toast.makeText(context,"Success!!",Toast.LENGTH_SHORT).show()
+    private fun post(post: Post) {
+        viewModel.post(post, object : PostFirebaseCallback {
+            override fun onResponse(response: PostResponse) {
+                response.post?.let { post ->
+                    //here we call as our data is save
+                    Toast.makeText(context, "Post Uploaded", Toast.LENGTH_SHORT).show()
+                }
+
+                response.exception?.let { exception ->
+                    exception.message?.let {
+                        Toast.makeText(context, "Something is wrong!!", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
-        }
-
-        response.exception?.let { exception ->
-            exception.message?.let {
-                Toast.makeText(context,"Something is wrong!!",Toast.LENGTH_SHORT).show()
-            }
-        }
+        })
     }
 
     override fun onDestroyView() {

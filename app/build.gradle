@@ -55,5 +55,7 @@ dependencies {
 
     //for firebase database
     implementation 'com.google.firebase:firebase-database-ktx:20.0.6'
+    //for firebase authentication
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.8'
 
 }
