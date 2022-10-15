@@ -48,7 +48,7 @@
                     android:text="Fill Your Details"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:textColor="#969EEE"
+                    android:textColor="#608AFD"
                     android:textStyle="bold"
                     android:typeface="monospace"
                     app:fontFamily="casual" />

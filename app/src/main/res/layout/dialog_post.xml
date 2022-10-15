@@ -21,65 +21,69 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_cancel_24"
         android:layout_gravity="end"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        app:tint="@color/secondary"
+        android:padding="8dp"
+        android:background="?selectableItemBackground"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Post"
         android:layout_margin="10dp"
-        android:textColor="@color/dark"
+        android:textColor="@color/secondary"
         android:textSize="28sp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:fontFamily="casual"
         android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post Title"
-        android:textSize="18sp"
-        android:textColor="@color/dark"
-        />
     <EditText
         android:id="@+id/et_post_title"
+        style="@style/EditTextBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:hint="Title"/>
-    <TextView
-        android:id="@+id/txt_ngo_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NGO Name"
-        android:textSize="18sp"
-        android:textColor="@color/dark"
-        />
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_title"
+        android:drawablePadding="16dp"
+        android:hint="Post Title"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailAddress" />
+
     <EditText
         android:id="@+id/et_ngo_name"
+        style="@style/EditTextBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:hint="NGO Name"/>
-    <TextView
-        android:id="@+id/txt_ngo_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NGO Description"
-        android:textSize="18sp"
-        android:textColor="@color/dark"
-        />
+        android:layout_marginBottom="8dp"
+        android:drawableStart="@drawable/ic_group"
+        android:drawablePadding="16dp"
+        android:hint="NGO Name"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailAddress" />
+
     <EditText
         android:id="@+id/et_ngo_desc"
+        style="@style/EditTextBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:hint="NGO Description"/>
+        android:drawableStart="@drawable/ic_description"
+        android:drawablePadding="16dp"
+        android:hint="NGO Description"
+        android:imeOptions="actionDone"
+        android:inputType="textEmailAddress" />
 
     <Button
         android:id="@+id/btn_add_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:backgroundTint="@color/dark"
         android:text="Add Post"
+        android:textAllCaps="false"
         android:layout_margin="10dp"
         android:layout_gravity="center_horizontal"/>
 </LinearLayout>

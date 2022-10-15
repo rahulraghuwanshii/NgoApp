@@ -10,11 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.rahulraghuwanshi.ngoapp.R
 import com.rahulraghuwanshi.ngoapp.data.post.Post
@@ -47,12 +51,13 @@ class PostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnPost.setOnClickListener {
-            showPostDialog(requireContext())
-        }
         viewModel = ViewModelProvider(this)[PostViewModel::class.java]
         //actions are here
         checkAuthUser()
+
+        binding.btnPost.setOnClickListener {
+            showPostDialog(requireContext())
+        }
     }
 
     private fun checkAuthUser() {
@@ -60,49 +65,58 @@ class PostFragment : Fragment() {
             findNavController(binding.root).navigate(
                 PostFragmentDirections.actionPostFragmentToLoginFragment())
         }else{
-
+            getPost()
         }
     }
-    private fun showPostDialog(activity: Context) {
 
-        val dialog = Dialog(activity)
+    private fun showPostDialog(context: Context) {
+
+        val dialog = Dialog(context)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_post)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setCancelable(true)
-        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        val btnAddPost = dialog.findViewById<AppCompatButton>(R.id.btn_add_post)
-        val etPostTitle = dialog.findViewById<AppCompatButton>(R.id.et_post_title)
-        val etNgoName = dialog.findViewById<AppCompatButton>(R.id.et_ngo_name)
-        val etNgoDesc = dialog.findViewById<AppCompatButton>(R.id.et_ngo_desc)
-        val ivCancel = dialog.findViewById<AppCompatButton>(R.id.iv_cancel)
+        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        val btnAddPost = dialog.findViewById<Button>(R.id.btn_add_post)
+        val etPostTitle = dialog.findViewById<EditText>(R.id.et_post_title)
+        val etNgoName = dialog.findViewById<EditText>(R.id.et_ngo_name)
+        val etNgoDesc = dialog.findViewById<EditText>(R.id.et_ngo_desc)
+        val ivCancel = dialog.findViewById<ImageView>(R.id.iv_cancel)
 
-        val id = UUID.randomUUID().toString()
-        val title = etPostTitle.text.toString()
-        val ngoName = etNgoName.text.toString()
-        val ngoDesc = etNgoDesc.text.toString()
-        val simpleDate = SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH)
-        val currentDate = simpleDate.format(Date()).toString()
-
-        val post : Post = Post(id,ngoName,title,ngoDesc,currentDate)
         ivCancel.setOnClickListener {
             dialog.dismiss()
         }
-        btnAddPost.setOnClickListener { dialog.dismiss() }
+        btnAddPost.setOnClickListener {
+
+            val id = UUID.randomUUID().toString()
+            val title = etPostTitle.text.toString()
+            val ngoName = etNgoName.text.toString()
+            val ngoDesc = etNgoDesc.text.toString()
+            val simpleDate = SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH)
+            val currentDate = simpleDate.format(Date()).toString()
+
+            val post = Post(id,ngoName,title,ngoDesc,currentDate)
+            post(post)
+            dialog.dismiss()
+        }
         dialog.show()
     }
     private fun getPost() {
+        val progress = context?.let { Utils.progressDialog(it) }
         viewModel.getResponseUsingCallback(object : PostFirebaseCallback {
             override fun onResponse(response: PostResponse) {
                 response.post?.let { post ->
                     //here we set our recyclerview
+                    progress?.dismiss()
                     binding.apply {
+                        rvPost.layoutManager = LinearLayoutManager(context)
                         rvPost.adapter = PostAdapter(post)
                     }
                 }
 
                 response.exception?.let { exception ->
                     exception.message?.let {
+                        progress?.dismiss()
                         Toast.makeText(context, "Something is wrong!!", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -111,15 +125,18 @@ class PostFragment : Fragment() {
     }
 
     private fun post(post: Post) {
+        val progress = context?.let { Utils.progressDialog(it) }
         viewModel.post(post, object : PostFirebaseCallback {
             override fun onResponse(response: PostResponse) {
-                response.post?.let { post ->
+                response.post.let { post ->
                     //here we call as our data is save
+                    progress?.dismiss()
                     Toast.makeText(context, "Post Uploaded", Toast.LENGTH_SHORT).show()
                 }
 
                 response.exception?.let { exception ->
                     exception.message?.let {
+                        progress?.dismiss()
                         Toast.makeText(context, "Something is wrong!!", Toast.LENGTH_SHORT).show()
                     }
                 }
