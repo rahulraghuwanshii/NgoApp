@@ -7,6 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.rahulraghuwanshi.ngoapp.R
 import com.rahulraghuwanshi.ngoapp.data.post.Post
 import com.rahulraghuwanshi.ngoapp.data.post.PostFirebaseCallback
 import com.rahulraghuwanshi.ngoapp.data.post.PostResponse
@@ -36,8 +40,18 @@ class PostFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[PostViewModel::class.java]
         //actions are here
-
+        checkAuthUser()
     }
+
+    private fun checkAuthUser() {
+        if (FirebaseAuth.getInstance().currentUser == null){
+            findNavController(binding.root).navigate(
+                PostFragmentDirections.actionPostFragmentToLoginFragment())
+        }else{
+
+        }
+    }
+
 
     private fun getPost() {
         viewModel.getResponseUsingCallback(object : PostFirebaseCallback {

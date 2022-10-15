@@ -12,4 +12,5 @@ class SignUpViewModel(
     fun signUp(email: String, password: String,authListener: AuthListener){
         repository.register(email, password, authListener)
     }
+
 }
