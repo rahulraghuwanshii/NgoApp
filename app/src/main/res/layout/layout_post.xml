@@ -41,9 +41,10 @@
             android:layout_marginStart="8dp"
             android:text="by Jai Ho Ngo"
             android:textAllCaps="false"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/secondary"
             app:layout_constraintBottom_toTopOf="@id/view_divider"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_post_title" />
 
