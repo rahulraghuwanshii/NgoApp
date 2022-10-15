@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rahulraghuwanshi.ngoapp.R
 import com.rahulraghuwanshi.ngoapp.data.gallery.Gallery
 import com.rahulraghuwanshi.ngoapp.data.gallery.GalleryFirebaseCallback
@@ -19,6 +21,7 @@ import com.rahulraghuwanshi.ngoapp.databinding.FragmentSignUpBinding
 import com.rahulraghuwanshi.ngoapp.ui.adapter.GalleryAdapter
 import com.rahulraghuwanshi.ngoapp.ui.adapter.PostAdapter
 import com.rahulraghuwanshi.ngoapp.ui.fragment.post.PostViewModel
+import com.rahulraghuwanshi.ngoapp.utils.Utils
 
 class GoodwillGalleryFragment : Fragment() {
 
@@ -39,42 +42,32 @@ class GoodwillGalleryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this)[GalleryViewModel::class.java]
-        //actions are here
+
+        getGallery()
     }
-    private fun getPost() {
+    private fun getGallery() {
+        val progress = context?.let { Utils.progressDialog(it) }
         viewModel.getResponseUsingCallback(object : GalleryFirebaseCallback {
             override fun onResponse(response: GalleryResponse) {
                 response.gallery?.let { gallery ->
+                    progress?.dismiss()
                     //here we set our recyclerview
                     binding.apply {
-                        rvGallery.adapter = GalleryAdapter(gallery)
+                        binding.apply {
+                            rvGallery.layoutManager = GridLayoutManager(context,2)
+                            rvGallery.adapter = GalleryAdapter(gallery)
+                        }
                     }
                 }
 
                 response.exception?.let { exception ->
                     exception.message?.let {
+                        progress?.dismiss()
                         Toast.makeText(context, "Something is wrong!!", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         });
-    }
-
-    private fun addGallery(gallery: Gallery) {
-        viewModel.gallery(gallery, object : GalleryFirebaseCallback {
-            override fun onResponse(response: GalleryResponse) {
-                response.gallery?.let { gallery ->
-                    //here we call as our data is save
-                    Toast.makeText(context, "Post Uploaded", Toast.LENGTH_SHORT).show()
-                }
-
-                response.exception?.let { exception ->
-                    exception.message?.let {
-                        Toast.makeText(context, "Something is wrong!!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        })
     }
 
     override fun onDestroyView() {

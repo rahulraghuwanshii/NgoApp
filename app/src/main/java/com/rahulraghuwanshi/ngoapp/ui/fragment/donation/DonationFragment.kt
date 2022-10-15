@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rahulraghuwanshi.ngoapp.data.donation.Donation
 import com.rahulraghuwanshi.ngoapp.data.donation.DonationFirebaseCallback
 import com.rahulraghuwanshi.ngoapp.data.donation.DonationResponse
@@ -16,6 +17,7 @@ import com.rahulraghuwanshi.ngoapp.data.post.PostResponse
 import com.rahulraghuwanshi.ngoapp.databinding.FragmentDonationBinding
 import com.rahulraghuwanshi.ngoapp.ui.adapter.DonateAdapter
 import com.rahulraghuwanshi.ngoapp.ui.adapter.PostAdapter
+import com.rahulraghuwanshi.ngoapp.utils.Utils
 
 class DonationFragment : Fragment() {
     private var _binding: FragmentDonationBinding? = null
@@ -35,19 +37,24 @@ class DonationFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[DonationViewModel::class.java]
         //actions are here
+        getDonationInfo()
     }
     private fun getDonationInfo() {
+        val progress = context?.let { Utils.progressDialog(it) }
         viewModel.getResponseUsingCallback(object : DonationFirebaseCallback {
             override fun onResponse(response: DonationResponse) {
                 response.donation?.let { donation ->
+                    progress?.dismiss()
                     //here we set our recyclerview
                     binding.apply {
+                        rvDonate.layoutManager = LinearLayoutManager(context)
                         rvDonate.adapter = DonateAdapter(donation)
                     }
                 }
 
                 response.exception?.let { exception ->
                     exception.message?.let {
+                        progress?.dismiss()
                         Toast.makeText(context, "Something is wrong!!", Toast.LENGTH_SHORT).show()
                     }
                 }
