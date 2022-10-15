@@ -31,5 +31,5 @@ class GalleryAdapter(
             .into(holder.binding.imgGallery)
     }
 
-    override fun getItemCount(): Int = 0;
+    override fun getItemCount(): Int = galleryList.size;
 }
