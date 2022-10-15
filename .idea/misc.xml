@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProject/NgoApp/app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.168" />
         <entry key="..\:/AndroidProject/NgoApp/app/src/main/res/drawable/ic_calendar.xml" value="0.168" />
+        <entry key="..\:/AndroidProject/NgoApp/app/src/main/res/layout/dialog_gallery.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/NgoApp/app/src/main/res/layout/dialog_post.xml" value="0.264" />
         <entry key="..\:/AndroidProject/NgoApp/app/src/main/res/layout/fragment_donation.xml" value="0.2" />
         <entry key="..\:/AndroidProject/NgoApp/app/src/main/res/layout/fragment_goodwill_gallery.xml" value="0.2" />
         <entry key="..\:/AndroidProject/NgoApp/app/src/main/res/layout/fragment_login.xml" value="0.2" />
